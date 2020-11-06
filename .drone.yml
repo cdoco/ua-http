@@ -1,0 +1,15 @@
+kind: pipeline
+name: default
+
+clone:
+  depth: 10
+
+steps:
+
+- name: Github-Mirror
+  image: alpine/git
+  environment:
+    GITHUB_TOKEN:
+      from_secret: GITHUB_TOKEN
+  commands:
+  - git push --mirror --quiet https://cdoco:${GITHUB_TOKEN}@github.com/cdoco/ua-http.git
