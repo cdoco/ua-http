@@ -12,4 +12,4 @@ steps:
     GITHUB_TOKEN:
       from_secret: GITHUB_TOKEN
   commands:
-  - git push --mirror --quiet https://cdoco:$GITHUB_TOKEN@github.com/cdoco/ua-http.git
+  - git push --mirror https://cdoco:$GITHUB_TOKEN@github.com/cdoco/ua-http.git
