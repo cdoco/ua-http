@@ -2,31 +2,64 @@ package main
 
 import (
 	stdContext "context"
+	"fmt"
 	"net/http"
+	"regexp"
 	"time"
 
 	"github.com/labstack/echo/v4"
 	mw "github.com/labstack/echo/v4/middleware"
+	"github.com/spf13/viper"
 )
 
-// Ua struct
-type Ua struct {
-	UserAgent string `json:"user-agent"`
-	Platform  string `json:"platform"`
-	OS        string `json:"os"`
-	Device    string `json:"device"`
-	Browser   string `json:"browser"`
+var config Config
+
+type (
+	// Ua struct
+	Ua struct {
+		UserAgent string `json:"user-agent"`
+		Platform  string `json:"platform"`
+		OS        string `json:"os"`
+		Device    string `json:"device"`
+		Browser   string `json:"browser"`
+	}
+
+	// Config struct
+	Config struct {
+		Os []Regexp `mapstructure:"os"`
+	}
+
+	// Regexp struct
+	Regexp struct {
+		Name   string `mapstructure:"name"`
+		Regexp string `mapstructure:"regexp"`
+	}
+)
+
+func init() {
+	// viper config
+	viper.SetConfigName("config")
+	viper.AddConfigPath(".")
+
+	err := viper.ReadInConfig()
+	if err != nil {
+		fmt.Println("ser config load err:" + err.Error())
+	}
+
+	viper.Unmarshal(&config)
 }
 
 // Handler ua-http
-func ua(c echo.Context) error {
+func handler(c echo.Context) error {
+	// Ua return
+	var u = new(Ua)
+	u.UserAgent = c.Request().UserAgent()
 
-	// r, _ := regexp.Compile("MicroMessenger")
-	// r.FindString(userAgent))
-
-	u := &Ua{
-		Platform:  "ZiHang Gao",
-		UserAgent: c.Request().UserAgent(),
+	for _, value := range config.Os {
+		match, _ := regexp.MatchString(value.Regexp, u.UserAgent)
+		if match {
+			u.OS = value.Name
+		}
 	}
 
 	// return json
@@ -58,6 +91,6 @@ func main() {
 		}
 	})
 
-	e.GET("/", ua)
+	e.GET("/", handler)
 	e.Logger.Fatal(e.Start(":6080"))
 }

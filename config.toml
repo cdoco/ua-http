@@ -1,0 +1,24 @@
+# Platform type
+platform = [
+  { name = "PC", regexp = "" },
+  { name = "Mobile", regexp = "AppleWebKit.*Mobile.*" },
+]
+
+# OS type
+os = [
+  { name = "Macos", regexp = "\\(M+;( U;)?.+Mac OS X" },
+  { name = "IOS", regexp = "\\(i+;( U;)? CPU.+Mac OS X" },
+  { name = "Android", regexp = "(Android|Adr)" },
+]
+
+# device type
+device = [
+  { name = "iPhone", regexp = "\\(iPhone;( U;)? CPU" },
+  { name = "iPad", regexp = "\\(iPad;( U;)? CPU" },
+]
+
+# browser type
+browser = [
+  { name = "Wechart", regexp = "MicroMessenger" },
+  { name = "QQ", regexp = "QQBrowser" },
+]
