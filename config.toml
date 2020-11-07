@@ -1,24 +1,61 @@
-# Platform type
-platform = [
-  { name = "PC", regexp = "" },
-  { name = "Mobile", regexp = "AppleWebKit.*Mobile.*" },
-]
-
 # OS type
 os = [
-  { name = "Macos", regexp = "\\(M+;( U;)?.+Mac OS X" },
-  { name = "IOS", regexp = "\\(i+;( U;)? CPU.+Mac OS X" },
-  { name = "Android", regexp = "(Android|Adr)" },
+  { name = "Macos", regexp = "\\(Macintosh;" },
+  { name = "IOS", regexp = "\\(i.*;( U;)? CPU" },
+  { name = "Android", regexp = "Android|Adr" },
+  { name = "Windows", regexp = "Windows NT" },
+  { name = "Windows Phone", regexp = "Windows Phone" },
+  { name = "Chrome OS", regexp = "CrOS" },
+  { name = "BlackBerry", regexp = "BlackBerry" },
+  { name = "FreeBSD", regexp = "FreeBSD" },
+  { name = "OpenBSD", regexp = "OpenBSD" },
+  { name = "SunOS", regexp = "SunOS" },
+  { name = "Linux", regexp = "Linux" },
 ]
 
 # device type
 device = [
+  { name = "OPPO", regexp = "; OPPO" },
+  { name = "RedMi", regexp = "; (redmi|HM NOTE)" },
+  { name = "XiaoMi", regexp = "; MI" },
+  { name = "Vivo", regexp = "; vivo" },
+  { name = "Samsung", regexp = "; (SAMSUNG|Nexus|Galaxy|SM-)" },
+  { name = "HuaWei", regexp = ";* (Honor|HUAWEI|H60-)" },
+  { name = "Letv", regexp = "; (Letv|Le )" },
+  { name = "Lenovo", regexp = "; Lenovo" },
+  { name = "Meizu", regexp = "; (MZ|MX|m1 note|m2 note)" },
+  { name = "ZTE", regexp = "; ZTE" },
+  { name = "ONEPLUS", regexp = "; ONEPLUS" },
   { name = "iPhone", regexp = "\\(iPhone;( U;)? CPU" },
   { name = "iPad", regexp = "\\(iPad;( U;)? CPU" },
+  { name = "Macos", regexp = "\\(Macintosh;" },
+  { name = "Windows Phone", regexp = "Windows Phone" },
+  { name = "Android", regexp = "Android|Adr" },
 ]
 
-# browser type
+# Browser type
 browser = [
+  { name = "ChromeFrame", regexp = "chromeframe" },
+  { name = "FacebookWebView", regexp = "FBAV" },
+  { name = "BlackBerry", regexp = "blackberry|BB10" },
+  { name = "Robot", regexp = "bot|spider|crawler|spider" },
+  { name = "InternetExplorer", regexp = "Trident" },
+  { name = "Opera", regexp = "opera mini|OPiOS|opera| OPR/" },
+  { name = "Edge", regexp = "Edge" },
+  { name = "Gsa", regexp = "GSA" },
+  { name = "WebTv", regexp = "webtv" },
+  { name = "OmniWeb", regexp = "omniweb" },
+  { name = "Phoenix", regexp = "Phoenix" },
+  { name = "Yandex", regexp = "YaBrowser" },
+  { name = "UC", regexp = "UBrowser" },
+  { name = "BAIDU", regexp = "BIDUBrowser" },
+  { name = "QQ", regexp = "QQ" },
   { name = "Wechart", regexp = "MicroMessenger" },
-  { name = "QQ", regexp = "QQBrowser" },
+  { name = "Weibo", regexp = "WeiBo" },
+  { name = "Dingtalk", regexp = "dingtalk" },
+  { name = "Android", regexp = "Android" },
+  { name = "Mozilla", regexp = "mozilla" },
+  { name = "Firefox", regexp = "Firefox" },
+  { name = "Chrome", regexp = "Chrome|CriOS" },
+  { name = "Safari", regexp = "Safari" },
 ]

@@ -26,7 +26,9 @@ type (
 
 	// Config struct
 	Config struct {
-		Os []Regexp `mapstructure:"os"`
+		Os      []Regexp `mapstructure:"os"`
+		Device  []Regexp `mapstructure:"device"`
+		Browser []Regexp `mapstructure:"browser"`
 	}
 
 	// Regexp struct
@@ -43,7 +45,7 @@ func init() {
 
 	err := viper.ReadInConfig()
 	if err != nil {
-		fmt.Println("ser config load err:" + err.Error())
+		fmt.Println("config load err:" + err.Error())
 	}
 
 	viper.Unmarshal(&config)
@@ -51,14 +53,45 @@ func init() {
 
 // Handler ua-http
 func handler(c echo.Context) error {
-	// Ua return
-	var u = new(Ua)
-	u.UserAgent = c.Request().UserAgent()
 
+	// Ua return
+	var u = &Ua{
+		UserAgent: c.Request().UserAgent(),
+		Platform:  "PC",
+		OS:        "unknown",
+		Device:    "unknown",
+		Browser:   "unknown",
+	}
+
+	// Set os name
 	for _, value := range config.Os {
 		match, _ := regexp.MatchString(value.Regexp, u.UserAgent)
 		if match {
 			u.OS = value.Name
+			break
+		}
+	}
+
+	// Set platform
+	if u.OS == "IOS" || u.OS == "Android" || u.OS == "Windows Phone" || u.OS == "BlackBerry" {
+		u.Platform = "Mobile"
+	}
+
+	// Set device name
+	for _, value := range config.Device {
+		match, _ := regexp.MatchString(value.Regexp, u.UserAgent)
+		if match {
+			u.Device = value.Name
+			break
+		}
+	}
+
+	// Set browser Name
+	for _, value := range config.Browser {
+		match, _ := regexp.MatchString(value.Regexp, u.UserAgent)
+		if match {
+			u.Browser = value.Name
+			break
 		}
 	}
 
