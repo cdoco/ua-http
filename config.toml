@@ -1,7 +1,7 @@
 # OS type
 os = [
   { name = "Macos", regexp = "\\(Macintosh;" },
-  { name = "IOS", regexp = "\\(i.*;( U;)? CPU" },
+  { name = "IOS", regexp = "\\(iPhone|iPad;( U;)? CPU" },
   { name = "Android", regexp = "Android|Adr" },
   { name = "Windows", regexp = "Windows NT" },
   { name = "Windows Phone", regexp = "Windows Phone" },
