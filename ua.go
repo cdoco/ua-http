@@ -54,9 +54,14 @@ func init() {
 // Handler ua-http
 func handler(c echo.Context) error {
 
+	var ua = c.QueryParam("ua")
+	if ua == "" {
+		ua = c.Request().UserAgent()
+	}
+
 	// Ua return
 	var u = &Ua{
-		UserAgent: c.Request().UserAgent(),
+		UserAgent: ua,
 		Platform:  "PC",
 		OS:        "unknown",
 		Device:    "unknown",
