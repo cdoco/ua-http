@@ -26,8 +26,7 @@ steps:
     debug: true
     dockerfile: Dockerfile
     tags:
-      - ${DRONE_TAG}
       - latest
   when:
     event:
-      - tag
+      - push
