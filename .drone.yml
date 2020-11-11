@@ -6,10 +6,28 @@ clone:
 
 steps:
 
-- name: Github-Mirror
+- name: Github Mirror
   image: alpine/git
   environment:
     GITHUB_TOKEN:
       from_secret: GITHUB_TOKEN
   commands:
   - git push --mirror https://cdoco:$GITHUB_TOKEN@github.com/cdoco/ua-http.git
+
+- name: docker-release
+  image: plugins/docker:18.09
+  settings:
+    username: drone
+    password:
+      from_secret: HARBOR_PASSWORD
+    registry: harbor.gaozihang.com
+    repo: harbor.gaozihang.com/library/ua-http
+    insecure: true
+    debug: true
+    dockerfile: Dockerfile
+    tags:
+      - ${DRONE_TAG}
+      - latest
+  when:
+    event:
+      - tag

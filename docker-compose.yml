@@ -1,0 +1,10 @@
+version: "3"
+services:
+
+  nginx:
+    image: harbor.gaozihang.com/library/ua-http:latest
+    container_name: ua-http.gaozihang.com
+    restart: always
+    network_mode: host
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
