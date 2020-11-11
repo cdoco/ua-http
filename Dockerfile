@@ -11,5 +11,6 @@ FROM alpine AS prod
 
 RUN apk add --no-cache bash
 
+COPY --from=build /go/src/ua-http/config.toml .
 COPY --from=build /go/src/ua-http/ua-http .
 CMD ["./ua-http"]
