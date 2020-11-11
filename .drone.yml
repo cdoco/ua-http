@@ -30,3 +30,25 @@ steps:
   when:
     event:
       - push
+
+- name: deploy-ssh
+  image: appleboy/drone-ssh 
+  settings:
+    host: 
+       - 192.168.2.6
+    username: root
+    password:
+      from_secret: HOME_PASSWORD
+    port: 22
+    command_timeout: 2m 
+    script:
+       - docker pull harbor.gaozihang.com/library/ua-http
+       - cd .docker/a-http
+       - git pull
+       - docker-compose up -d --force-recreate
+  when:
+    branch:
+      - master
+    event:
+      - push
+      - tag

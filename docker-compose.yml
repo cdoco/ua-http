@@ -1,7 +1,7 @@
 version: "3"
 services:
 
-  nginx:
+  ua-http:
     image: harbor.gaozihang.com/library/ua-http:latest
     container_name: ua-http.gaozihang.com
     restart: always
