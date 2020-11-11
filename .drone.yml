@@ -26,10 +26,11 @@ steps:
     debug: true
     dockerfile: Dockerfile
     tags:
+      - ${DRONE_TAG}
       - latest
   when:
     event:
-      - push
+      - tag
 
 - name: deploy-ssh
   image: appleboy/drone-ssh 
@@ -47,8 +48,5 @@ steps:
        - git pull
        - docker-compose up -d --force-recreate
   when:
-    branch:
-      - master
     event:
-      - push
       - tag
