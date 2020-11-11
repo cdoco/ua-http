@@ -43,7 +43,7 @@ steps:
     command_timeout: 2m 
     script:
        - docker pull harbor.gaozihang.com/library/ua-http
-       - cd .docker/a-http
+       - cd .docker/ua-http
        - git pull
        - docker-compose up -d --force-recreate
   when:
