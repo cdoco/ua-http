@@ -8,7 +8,7 @@ curl \
   "https://api.gaozihang.com/ua-http/?ua=Mozilla%2F5.0%20(iPhone%3B%20CPU%20iPhone%20OS%2014_0_1%20like%20Mac%20OS%20X)%20AppleWebKit%2F605.1.15%20(KHTML,%20like%20Gecko)%20Mobile%2F15E148%20MicroMessenger%2F7.0.17(0x1700112a)%20NetType%2FWIFI%20Language%2Fzh_CN%22"
 ```
 
-```json
+```
 {
   user-agent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.1 (0x1700112a) NetType/WIFI Language/zh_CN"",
   platform: "Mobile",
